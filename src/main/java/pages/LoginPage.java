@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
@@ -13,6 +14,7 @@ public class LoginPage {
     private By passwordField = By.id("password");
 
     private By loginButton = By.id("login-button");
+    private By xErrorMessageButton = By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3/button");
 
 
     private By errorMsg = By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3");
@@ -31,8 +33,21 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
+    public void clickxErrorButton(){
+        driver.findElement(xErrorMessageButton).click();
+    }
+
     public String getErrorMessage(){
         return driver.findElement(errorMsg).getText();
+    }
+
+    public boolean  isElementDisplayed() {
+        try {
+            driver.findElement(errorMsg).getText();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
 }

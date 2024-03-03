@@ -9,8 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class LoginPageTests {
     private WebDriver driver;
@@ -23,12 +22,14 @@ public class LoginPageTests {
     public void setUp(){
         //Initialize ChromeDriver instance
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
     }
 
+    /*Test: Successfull login*/
     @Test
     public void loginTest(){
         //Enter username and password
@@ -42,53 +43,91 @@ public class LoginPageTests {
         assertTrue(productsPage.isProductsPageDisplayed());
     }
 
+    /*Test: Wrong user and wrong password*/
     @Test
     public void errorMessageTest(){
-        loginPage.enterUserName("sfdfdgdgf");
-        loginPage.enterPassword("sfsdfsdf");
-
-        //Click on the login button
-        loginPage.clickLoginButton();
-        assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
-    }
-    @Test
-    public void invalidPasswordTest(){
-        loginPage.enterUserName("standard_user");
-        loginPage.enterPassword("sfsdfsdf");
-
+        loginPage.enterUserName("error_user");
+        loginPage.enterPassword("error_password");
 
         loginPage.clickLoginButton();
+
         assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
     }
+
+    /*Test: locked_out_user and correct password*/
     @Test
-    public void invalidUsernameTest(){
-        loginPage.enterUserName("standards_user");
+    public void locked_out_userTest(){
+        loginPage.enterUserName("locked_out_user");
         loginPage.enterPassword("secret_sauce");
 
         loginPage.clickLoginButton();
+
+        assertEquals("Epic sadface: Sorry, this user has been locked out.",loginPage.getErrorMessage());
+    }
+
+    /*Test: correct user and wrong password*/
+    @Test
+    public void invalidPasswordTest(){
+        loginPage.enterUserName("standard_user");
+        loginPage.enterPassword("wrong pass");
+
+        loginPage.clickLoginButton();
+
         assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
     }
 
+    /*Test: invalid user and correct password*/
+    @Test
+    public void invalidUsernameTest(){
+        loginPage.enterUserName("invalid_user");
+        loginPage.enterPassword("secret_sauce");
+
+        loginPage.clickLoginButton();
+
+        assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
+    }
+
+    /*Test: correct user and empty password field*/
     @Test
     public void emptyPasswordTest(){
         loginPage.enterUserName("standard_user");
         loginPage.enterPassword("");
 
         loginPage.clickLoginButton();
+
         assertEquals("Epic sadface: Password is required",loginPage.getErrorMessage());
     }
+
+    /*Test: empty user field and correct password*/
     @Test
     public void emptyUsernameTest(){
         loginPage.enterUserName("");
         loginPage.enterPassword("secret_sauce");
 
         loginPage.clickLoginButton();
+
         assertEquals("Epic sadface: Username is required",loginPage.getErrorMessage());
     }
 
+    /*Test: Empty fields*/
+    @Test
+    public void emptyFieldsTest(){
+
+        loginPage.clickLoginButton();
+
+        assertEquals("Epic sadface: Username is required",loginPage.getErrorMessage());
+    }
+
+    /*Test: error message X button*/
+    @Test
+    public void errorMessageXButton(){
+        loginPage.clickLoginButton();
+        loginPage.clickxErrorButton();
+
+        assertFalse(loginPage.isElementDisplayed());
+    }
     @After
     public void tearDown(){
         driver.quit();
     }
-
 }
