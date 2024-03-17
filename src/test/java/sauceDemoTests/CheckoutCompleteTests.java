@@ -39,7 +39,7 @@ public class CheckoutCompleteTests {
         checkoutYourInformationPage.clickContinueButton();
         checkoutYourInformationStepTwoPage.clickFinishButton();
     }
-    //Click BackHoem button and return to products page
+    //Click BackHome button and return to products page
     @Test
     public void clickCancelButton(){
         checkoutCompletePage.clickBackHomeButton();

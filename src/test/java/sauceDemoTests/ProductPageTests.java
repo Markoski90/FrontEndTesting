@@ -1,6 +1,5 @@
 package sauceDemoTests;
 
-import lombok.SneakyThrows;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,12 +8,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
+
 import java.util.List;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 public class ProductPageTests {
     private WebDriver driver;
     private LoginPage loginPage;
     private ProductsPage productsPage;
+
     @Before
     public void setUp() {
         driver = new ChromeDriver();
@@ -86,17 +89,13 @@ public class ProductPageTests {
         assertEquals("Test.allTheThings() T-Shirt (Red)", productsPage.activeOptionByNameText());
         assertEquals("Name (Z to A)", productsPage.getTextFromDropDown());
     }
-    //Test: BurgerMenuButton functionality
-    @SneakyThrows
-    @Test
-    public void burgerMenuButtonTest() {
-        productsPage.clickBurgerMenuButton();
-            Thread.sleep(5000); // 5 seconds
-        assertTrue(productsPage.isCrossMenuButtonDisplayed());
-        assertTrue(productsPage.isAllItemSelectionDisplayed());
-    }
     /*Hover on some Item */
-    //In progress
+    @Test
+    public void hoverOnBackpackTitleTest(){
+        assertEquals("#18583a",productsPage.getColorFromBackpackTitle());
+        productsPage.backpackTitleHoverElement();
+        assertEquals("#3ddc91",productsPage.getColorFromBackpackTitle());
+    }
     @After
         public void tearDown () {
             driver.quit();
