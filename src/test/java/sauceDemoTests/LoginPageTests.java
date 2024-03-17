@@ -52,7 +52,6 @@ public class LoginPageTests {
         loginPage.clickLoginButton();
         assertEquals("Epic sadface: Sorry, this user has been locked out.",loginPage.getErrorMessage());
     }
-
     //Test: correct user and wrong password
     @Test
     public void invalidPasswordTest(){

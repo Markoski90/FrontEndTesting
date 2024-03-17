@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 import static org.junit.Assert.assertTrue;
-
 public class CheckYourInformationStepTwoTests {
     private WebDriver driver;
     private LoginPage loginPage;
@@ -39,7 +38,6 @@ public class CheckYourInformationStepTwoTests {
         checkoutYourInformationPage.enterZipPostalCode("6000");
         checkoutYourInformationPage.clickContinueButton();
     }
-
     //Successful buying product
     @Test
     public void clickFinishButton(){

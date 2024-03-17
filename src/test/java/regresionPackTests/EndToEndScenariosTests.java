@@ -8,10 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
 import pages.*;
-
 import static org.junit.Assert.*;
-
-
 public class EndToEndScenariosTests {
     private WebDriver driver;
     private LoginPage loginPage;
@@ -21,8 +18,6 @@ public class EndToEndScenariosTests {
     private CheckoutYourInformationStepTwoPage checkoutYourInformationStepTwoPage;
     private CheckoutCompletePage checkoutCompletePage;
     private ProductDetailsPage productDetailsPage;
-
-
     @Before
     public void setUp() {
         driver = new ChromeDriver();
@@ -39,7 +34,7 @@ public class EndToEndScenariosTests {
     }
     // Successfully buying
     @Test
-    public void SuccessfullyBuying() {
+    public void SuccessfullyBuyingTest() {
         loginPage.enterUserName("standard_user");
         loginPage.enterPassword("secret_sauce");
         loginPage.clickLoginButton();
@@ -56,11 +51,10 @@ public class EndToEndScenariosTests {
         checkoutYourInformationPage.clickContinueButton();
         checkoutYourInformationStepTwoPage.clickFinishButton();
         assertTrue(checkoutCompletePage.isCheckoutCompletePageDisplayed());
-
     }
     // Canceled buy
     @Test
-    public void CanceledBuy(){
+    public void CanceledBuyTest(){
         loginPage.enterUserName("standard_user");
         loginPage.enterPassword("secret_sauce");
         loginPage.clickLoginButton();
@@ -179,10 +173,8 @@ public class EndToEndScenariosTests {
             checkoutYourInformationStepTwoPage.clickFinishButton();
             assertTrue(checkoutCompletePage.isCheckoutCompletePageDisplayed());
         }
-
         @After
         public void tearDown() {
             driver.quit();
         }
 }
-

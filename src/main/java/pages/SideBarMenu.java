@@ -28,7 +28,6 @@ public class SideBarMenu {
     public boolean isCrossMenuButtonDisplayed() {
         return driver.findElement(crossMenuButton).isDisplayed();
     }
-
     public void clickAboutOption() {
         WebElement aboutSidebarButton = driver.findElement(aboutItemSelectionButton);
         aboutSidebarButton.click();
