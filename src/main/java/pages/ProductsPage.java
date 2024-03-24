@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
-
 public class ProductsPage {
     private WebDriver driver;
     Actions actions;
@@ -27,7 +26,6 @@ public class ProductsPage {
     public By clickShoppingCart = By.id("shopping_cart_container");
     private By activeOptionText = By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[2]/div");
     private By activeOptionByNameText = By.className("inventory_item_name");
-
 
     public void clickAddBackpackToCartButton(){
         driver.findElement(addBackpackToCartButton).click();
@@ -73,11 +71,9 @@ public class ProductsPage {
         Select dropdownElement = new Select(driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/div/span/select")));
         return dropdownElement.getFirstSelectedOption().getText();
     }
-
     public void clickShoppingCart(){
         driver.findElement(clickShoppingCart).click();
     }
-
         public boolean isProductsPageDisplayed(){
         return driver.findElement(productsTitle).getText().equals("Products");
     }

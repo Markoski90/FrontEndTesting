@@ -17,7 +17,6 @@ public class YourCartPageTests {
     private YourCartPage yourCartPage;
     private CheckoutYourInformationPage checkoutYourInformationPage;
     private ProductDetailsPage productDetailsPage;
-
     @Before
     public void setUp() {
         driver = new ChromeDriver();

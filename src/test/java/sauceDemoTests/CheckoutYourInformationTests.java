@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 import static org.junit.Assert.*;
-
 public class CheckoutYourInformationTests {
     private WebDriver driver;
     private LoginPage loginPage;
